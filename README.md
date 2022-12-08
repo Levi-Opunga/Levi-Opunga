@@ -18,8 +18,8 @@
 >> - Kotlin
 >> 
 I’m currently learning 
->> Go 
->> Rust
+>> -Go 
+>> -Rust
 
 I’m looking to woriking on Android and Web Projects
 
