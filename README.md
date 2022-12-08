@@ -1,6 +1,9 @@
-- 👋 Hi, I’m @Levi-Opunga
-- 👀 I’m a backend web developer
-- 🌱 I’m currently learning ...
+# 👋 Hi, I’m @Levi-Opunga
+- 👀 I’m a full stack Web Weveloper and Android Developer
+- 
+>> - 
+>> 
+- 🌱 I’m currently learning 
 - 💞️ I’m looking to collaborate on ...
 - 📫 How to reach me ...
 
