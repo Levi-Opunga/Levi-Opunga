@@ -1,10 +1,24 @@
 # 👋 Hi, I’m @Levi-Opunga
-- 👀 I’m a full stack Web Weveloper and Android Developer
-- 
->> - 
+ I’m a full stack Web Weveloper and Android Developer
+## My Frameworks
+>> - Spring Boot
+>> - Next
+>> - React
+>> - Svelte
+>> - Android Java
+>> - Tailwind 
+>> - Angular
+>> - React Native
 >> 
-- 🌱 I’m currently learning 
-- 💞️ I’m looking to collaborate on ...
+## Languages
+>> - Java
+>> - Javascript
+>> - Typescript
+>> - Shellscript
+>> - Kotlin
+>> 
+I’m currently learning Go and Rust
+I’m looking to collaborate on ...
 - 📫 How to reach me ...
 
 <!---
