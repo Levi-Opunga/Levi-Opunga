@@ -19,7 +19,7 @@
 >> -
 I’m currently learning 
 >> - Ocaml
->> - Haskell
+>> - Haskell $\lambda$
 
 I’m looking to woriking on Android and Web Projects and eventually writing my own compiler
 
