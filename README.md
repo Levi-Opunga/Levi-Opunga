@@ -1,5 +1,5 @@
 # Hi, I’m @Levi-Opunga
- I’m a full stack Web Weveloper and Android Developer
+ I’m a full stack Web Web Developer and Android Developer
 ## My Frameworks
 >> - Spring Boot
 >> - Next
@@ -16,12 +16,12 @@
 >> - Typescript
 >> - Shellscript
 >> - Kotlin
->> 
+>> -
 I’m currently learning 
->> - Go 
->> - Rust
+>> - Ocaml
+>> - Haskell
 
-I’m looking to woriking on Android and Web Projects
+I’m looking to woriking on Android and Web Projects and eventually writing my own compiler
 
 <!---
 Levi-Opunga/Levi-Opunga is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
