@@ -28,7 +28,8 @@ I’m currently learning
 
 I’m looking to woriking on Android and Web Projects and eventually writing my own compiler
 
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=levi-opunga&theme=onedark&hide_border=true&include_all_commits=true&count_private=false&layout=compact)
+<p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=levi-opunga&show_icons=true&locale=en&layout=compact" alt="levi-opunga" /></p>
+
 
 
 <p align="left"> <a href="https://twitter.com/vaderslowman" target="blank"><img src="https://img.shields.io/twitter/follow/vaderslowman?logo=twitter&style=for-the-badge" alt="vaderslowman" /></a> </p>
