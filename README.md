@@ -33,5 +33,5 @@ I’m looking to woriking on Android and Web Projects and eventually writing my 
 <div><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=levi-opunga&show_icons=true&locale=en&layout=compact" alt="levi-opunga" /></div>
 
 <br>
-<p align="right"> <a href="https://twitter.com/vaderslowman" target="blank"><img src="https://img.shields.io/twitter/follow/vaderslowman?logo=twitter&style=for-the-badge" alt="vaderslowman" /></a> </p>
+<p align="right"> <a href="https://twitter.com/badAtVim" target="blank"><img src="https://img.shields.io/twitter/follow/batAtVim?logo=twitter&style=for-the-badge" alt="badAtVim" /></a> </p>
 
