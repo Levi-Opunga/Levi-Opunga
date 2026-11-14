@@ -33,11 +33,4 @@ I build products that run on every screen you own: phones, laptops, the browser,
 
 Next I'm learning OCaml and Haskell, on the way to writing my own compiler.
 
-### Learned the hard way
-
-- A new iOS app extension gets its own App ID. Associate the App Group with it, or signing fails.
-- React Native has no `Buffer`. Your Node tests will pass anyway.
-- App Store processing can reject a build without a word in the dashboard. Check your email.
-- Never make a ScrollView the root of an expo-router tab.
-
 <a href="https://twitter.com/badAtVim"><img src="./assets/footer.svg?v=3f590fd" width="100%" alt="Follow me on X: @badAtVim" /></a>
