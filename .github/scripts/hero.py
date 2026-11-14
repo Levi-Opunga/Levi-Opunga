@@ -130,8 +130,8 @@ PROJECTS = [
     ("Linky", "Links your phones and computers. Share the clipboard and files, mirror notifications, control media, or ring a lost phone, over the local network or through a relay.", "Kotlin Multiplatform, Compose, Ktor"),
     ("Convo-Hub", "A platform for running business conversations on WhatsApp, with its own web app and a self-hosted deploy stack.", "Kotlin, TypeScript, Docker"),
     ("Multi-store commerce", "One Medusa backend running six storefronts, from fragrance to coffee to a restaurant menu, each with its own theme and checkout. Plus a desktop point of sale.", "Astro, Medusa, TypeScript"),
-    ("Rent and tax", "Rent, leases and M-Pesa collection for landlords, and a gateway that files invoices with KRA eTIMS, retrying the ones that fail.", "Hono, Drizzle, PostgreSQL, Go"),
-    ("On-device AI", "Small local models that turn what you say into actions in a mobile app, without sending your words to a server.", "React Native, Expo"),
+    ("Boma", "Property management for Kenyan landlords and managing agents: rent, leases, invoicing, M-Pesa collection, KRA tax filing and landlord payouts.", "Hono, Drizzle, PostgreSQL, React"),
+    ("PesaFlow", "A budget tracker that fills itself in. It reads your M-Pesa and bank messages, files each transaction, and learns your categories. A small AI model on the phone answers questions about your money.", "React Native, Expo, SQLite, on-device AI"),
 ]
 
 STACK = [

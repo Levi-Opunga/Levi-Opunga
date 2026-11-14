@@ -3,7 +3,7 @@
   <img src="./assets/hero-light.svg?c6" width="100%" alt="Levi Opunga. Shipping to Android, iOS, macOS, Windows, Linux and the web. Full-stack engineer in Kenya." />
 </picture>
 
-**Levi Opunga**, full-stack engineer in Kenya. I build mobile, web, desktop and backend software, including [TumaBoda](https://tumaboda.co.ke) same-day delivery, the Tessera SSH client, the Linky device-linking app, M-Pesa payments and KRA eTIMS tax filing. Find me on X at [@badAtVim](https://twitter.com/badAtVim).
+**Levi Opunga**, full-stack engineer in Kenya. I build mobile, web, desktop and backend software, including [TumaBoda](https://tumaboda.co.ke) same-day delivery, the Boma property manager, the PesaFlow budget tracker, the Tessera SSH client and the Linky device-linking app, with M-Pesa payments and KRA eTIMS tax filing built in. Find me on X at [@badAtVim](https://twitter.com/badAtVim).
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/building-dark.svg?c6" />
@@ -46,12 +46,12 @@
 
 <p>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./assets/project-rent-and-tax-dark.svg?c6" />
-    <img src="./assets/project-rent-and-tax-light.svg?c6" width="49%" alt="Rent and tax: rent, leases and M-Pesa collection for landlords, and a gateway that files invoices with KRA eTIMS. Hono, Drizzle, PostgreSQL, Go." />
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/project-boma-dark.svg?c6" />
+    <img src="./assets/project-boma-light.svg?c6" width="49%" alt="Boma: property management for Kenyan landlords and managing agents, covering rent, leases, invoicing, M-Pesa collection, KRA tax filing and landlord payouts. Hono, Drizzle, PostgreSQL, React." />
   </picture>
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./assets/project-on-device-ai-dark.svg?c6" />
-    <img src="./assets/project-on-device-ai-light.svg?c6" width="49%" alt="On-device AI: small local models that turn what you say into actions in a mobile app, without sending your words to a server. React Native, Expo." />
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/project-pesaflow-dark.svg?c6" />
+    <img src="./assets/project-pesaflow-light.svg?c6" width="49%" alt="PesaFlow: a budget tracker that fills itself in. It reads your M-Pesa and bank messages, files each transaction, and learns your categories. A small AI model on the phone answers questions about your money. React Native, Expo, SQLite, on-device AI." />
   </picture>
 </p>
 
