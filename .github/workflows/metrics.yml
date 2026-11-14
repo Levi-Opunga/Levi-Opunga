@@ -25,31 +25,20 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  metrics:
+  cards:
     runs-on: ubuntu-latest
-    env:
-      METRICS_TOKEN: ${{ secrets.METRICS_TOKEN }}
     steps:
-      - name: Stats card
-        if: env.METRICS_TOKEN != ''
-        uses: lowlighter/metrics@latest
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
         with:
-          filename: metrics.stats.svg
-          token: ${{ secrets.METRICS_TOKEN }}
-          committer_token: ${{ secrets.GITHUB_TOKEN }}
-          base: header, activity, community, repositories
-          repositories_affiliations: owner, collaborator
-      - name: Top languages card
-        if: env.METRICS_TOKEN != ''
-        uses: lowlighter/metrics@latest
-        with:
-          filename: metrics.languages.svg
-          token: ${{ secrets.METRICS_TOKEN }}
-          committer_token: ${{ secrets.GITHUB_TOKEN }}
-          base: ""
-          plugin_languages: yes
-          plugin_languages_details: percentage
-          plugin_languages_limit: 8
-          plugin_languages_ignored: html, css, scss, dockerfile, makefile
-          plugin_languages_skipped: Levi-Opunga
-          repositories_affiliations: owner, collaborator
+          node-version: 22
+      - name: Draw stats and languages cards
+        env:
+          GH_TOKEN: ${{ secrets.METRICS_TOKEN }}
+        run: node .github/scripts/cards.mjs .
+      - name: Commit if changed
+        run: |
+          git add metrics.stats.svg metrics.languages.svg
+          git diff --cached --quiet && exit 0
+          git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "Update profile cards"
+          git push
