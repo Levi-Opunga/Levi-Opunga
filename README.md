@@ -5,7 +5,7 @@
 
 I build products that run on every screen you own: phones, laptops, the browser, and the servers behind them. I work from Kenya, so M-Pesa payments and KRA tax filing are a normal part of the job.
 
-Some of what I build is my own, like an SSH client and an app that links your devices. The rest is for businesses: shops, landlords, logistics companies. Most of it has to work on a mid-range Android phone over patchy mobile data, so I care about offline-first apps, small downloads, and sync that doesn't lose your work. Lately I've been running small AI models on the phone itself, so your words never leave it.
+Some of what I build is my own, like an SSH client and an app that links your devices. The rest is for businesses: shops, landlords, delivery companies, water utilities. Most of it has to work on a mid-range Android phone over patchy mobile data, so I care about offline-first apps, small downloads, and sync that doesn't lose your work. Lately I've been running small AI models on the phone itself, so your words never leave it.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/building-dark.svg?c4" />
@@ -18,6 +18,11 @@ Some of what I build is my own, like an SSH client and an app that links your de
     <img src="./assets/project-tumaboda-light.svg?c4" width="100%" alt="TumaBoda, tumaboda.co.ke: same-day boda-boda delivery across Kenya. Riders get an app, customers follow their parcel on a live map, and shops book deliveries from their own checkout. Bun, Elysia, PostGIS, Go, Expo, Next.js." />
   </picture>
 </a>
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/project-tsavosync-dark.svg?c4" />
+  <img src="./assets/project-tsavosync-light.svg?c4" width="100%" alt="TsavoSync: prepaid smart water meters for utilities. Customers top up with mobile money and get a meter token in seconds, issued through a hardware security module. The utility tracks readings, credit and tariffs from one dashboard. Kotlin, Spring Boot, GraphQL, Go, Next.js, Expo." />
+</picture>
 
 <p>
   <picture>

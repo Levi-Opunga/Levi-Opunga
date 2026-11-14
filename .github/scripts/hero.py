@@ -122,7 +122,8 @@ def footer(t):
 
 TEXT_SEMI = Face("BricolageGrotesque.ttf", wght=600, wdth=100, opsz=18)
 
-FEATURED = ("TumaBoda", "Same-day boda-boda delivery across Kenya. Riders get an app, customers follow their parcel on a live map, and shops book deliveries from their own checkout.", "Bun, Elysia, PostGIS, Go, Expo, Next.js")
+FEATURED = [("TumaBoda", "Same-day boda-boda delivery across Kenya. Riders get an app, customers follow their parcel on a live map, and shops book deliveries from their own checkout.", "Bun, Elysia, PostGIS, Go, Expo, Next.js", "tumaboda.co.ke"),
+            ("TsavoSync", "Prepaid smart water meters for utilities. Customers top up with mobile money and get a meter token in seconds, issued through a hardware security module. The utility tracks readings, credit and tariffs from one dashboard.", "Kotlin, Spring Boot, GraphQL, Go, Next.js, Expo", None)]
 
 PROJECTS = [
     ("Tessera", "A desktop SSH client that keeps your hosts, keys and snippets in a git repo you own. Secrets are encrypted per person before they're committed, so no company holds your credentials.", "TypeScript, Electron, React"),
@@ -188,10 +189,10 @@ def corner_stripes(t, width, height):
     return "".join(out)
 
 
-def project_card(t, name, desc, stack_line, width, height, url=None):
+def project_card(t, name, desc, stack_line, width, height, url=None, featured=False):
     """One project on its own painted card: name, description, stack."""
     pad, size, lh = 44, 24, 34
-    title, title_w = DISPLAY.path(name.upper(), 52 if url else 46, 1.5)
+    title, title_w = DISPLAY.path(name.upper(), 52 if featured else 46, 1.5)
     parts = [f'<g fill="{t["ink"]}" transform="translate({pad} {pad + 44})">{title}</g>']
     if url:
         u, _ = TEXT_SEMI.path(url, 22)
@@ -219,8 +220,8 @@ def card_height(desc, width, size=24, lh=34, pad=44):
 
 def project_cards(t):
     """Yield (filename, svg). Small cards share one height so pairs line up."""
-    feat_name, feat_desc, feat_stack = FEATURED
-    yield f"project-{slug(feat_name)}", project_card(t, feat_name, feat_desc, feat_stack, 1280, card_height(feat_desc, 1280), "tumaboda.co.ke")
+    for feat_name, feat_desc, feat_stack, url in FEATURED:
+        yield f"project-{slug(feat_name)}", project_card(t, feat_name, feat_desc, feat_stack, 1280, card_height(feat_desc, 1280), url, featured=True)
     h = max(card_height(d, 620) for _, d, _ in PROJECTS)
     for name, desc, stack_line in PROJECTS:
         yield f"project-{slug(name)}", project_card(t, name, desc, stack_line, 620, h)
