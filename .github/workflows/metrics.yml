@@ -16,7 +16,8 @@ jobs:
         with:
           github_user_name: ${{ github.repository_owner }}
           outputs: |
-            dist/snake.svg?color_snake=#FFD23F&color_dots=#2A2163,#4B2A7A,#7A2D8C,#C2337F,#FF3E8A&color_dot_border=#110C30
+            dist/snake.svg?color_snake=#BB0000&color_dots=#E5E7EB,#A7D7BE,#4FAE80,#0E7A4B,#004D2C&color_dot_border=#F3F4F6
+            dist/snake-dark.svg?color_snake=#E03A3A&color_dots=#23262C,#0B4D33,#0E8A55,#3DBF85,#8FE3BC&color_dot_border=#16181C
       - uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
@@ -37,7 +38,7 @@ jobs:
         run: node .github/scripts/cards.mjs .
       - name: Commit if changed
         run: |
-          git add metrics.stats.svg metrics.languages.svg
+          git add metrics.*.svg
           git diff --cached --quiet && exit 0
           git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "Update profile cards"
           git push

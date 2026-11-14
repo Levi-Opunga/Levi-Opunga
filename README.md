@@ -1,4 +1,7 @@
-<img src="./assets/hero.svg?v=3f590fd" width="100%" alt="Levi Opunga, painted matatu-style. The LED route board reads 254 and cycles through Android, iOS, macOS, Windows, Linux and Web. The slogan reads: all screens, one codebase." />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/hero-dark.svg?v=c1" />
+  <img src="./assets/hero-light.svg?v=c1" width="100%" alt="Levi Opunga. Shipping to Android, iOS, macOS, Windows, Linux and the web. Full-stack engineer in Kenya." />
+</picture>
 
 I build products that run on every screen you own: phones, laptops, the browser, and the servers behind them. I work from Kenya, so M-Pesa payments and KRA tax filing are a normal part of the job.
 
@@ -17,11 +20,20 @@ I build products that run on every screen you own: phones, laptops, the browser,
 ### The numbers
 
 <p>
-  <img src="./metrics.stats.svg" width="49%" alt="GitHub contributions over the last 12 months, written as a mobile-money confirmation text" />
-  <img src="./metrics.languages.svg" width="49%" alt="Most used languages across my repositories" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./metrics.stats-dark.svg" />
+    <img src="./metrics.stats.svg" width="49%" alt="GitHub contributions over the last 12 months, written as a mobile-money confirmation text" />
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./metrics.languages-dark.svg" />
+    <img src="./metrics.languages.svg" width="49%" alt="Most used languages across my repositories" />
+  </picture>
 </p>
 
-<img src="https://raw.githubusercontent.com/Levi-Opunga/Levi-Opunga/output/snake.svg" width="100%" alt="A snake eating my contribution graph" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/Levi-Opunga/Levi-Opunga/output/snake-dark.svg" />
+  <img src="https://raw.githubusercontent.com/Levi-Opunga/Levi-Opunga/output/snake.svg" width="100%" alt="A snake eating my contribution graph" />
+</picture>
 
 ### What I reach for
 
@@ -33,4 +45,9 @@ I build products that run on every screen you own: phones, laptops, the browser,
 
 Next I'm learning OCaml and Haskell, on the way to writing my own compiler.
 
-<a href="https://twitter.com/badAtVim"><img src="./assets/footer.svg?v=3f590fd" width="100%" alt="Follow me on X: @badAtVim" /></a>
+<a href="https://twitter.com/badAtVim">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/footer-dark.svg?v=c1" />
+    <img src="./assets/footer-light.svg?v=c1" width="100%" alt="Follow me on X: @badAtVim" />
+  </picture>
+</a>
