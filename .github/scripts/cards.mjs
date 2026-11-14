@@ -1,7 +1,8 @@
-// Draws metrics.stats.svg and metrics.languages.svg from the GitHub API.
-// Needs GH_TOKEN: a fine-grained token with read access to your repos.
+// Draws metrics.stats.svg and metrics.languages.svg from the GitHub API, in the
+// matatu livery of assets/hero.svg. Needs GH_TOKEN with read access to your repos.
 // Only totals and language names are written; no repo names leave the API.
-import { writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
 
 const token = process.env.GH_TOKEN;
 if (!token) throw new Error("GH_TOKEN is not set");
@@ -9,26 +10,23 @@ const outDir = process.argv[2] ?? ".";
 const headers = { Authorization: `Bearer ${token}`, "User-Agent": "profile-cards" };
 
 const IGNORED = new Set(["HTML", "CSS", "SCSS", "Dockerfile", "Makefile", "Procfile", "Batchfile", "Smarty", "Jupyter Notebook", "MDX"]);
-const COLORS = {
-  TypeScript: "#3178c6", JavaScript: "#f1e05a", Kotlin: "#A97BFF", Java: "#b07219", Go: "#00ADD8",
-  Swift: "#F05138", Python: "#3572A5", Shell: "#89e051", Lua: "#000080", "C++": "#f34b7d", C: "#555555",
-  PHP: "#4F5D95", Rust: "#dea584", Dart: "#00B4AB", Svelte: "#ff3e00", Vue: "#41b883", Astro: "#ff5a03",
-  "Objective-C": "#438eff", "Objective-C++": "#6866fb", Ruby: "#701516", OCaml: "#ef7a08", Haskell: "#5e5086",
-  TeX: "#3D6117", PLpgSQL: "#336790", SQL: "#e38c00", Groovy: "#4298b8", Nix: "#7e7eff",
+const C = {
+  indigo: "#1B1446", deep: "#110C30", yellow: "#FFD23F", pink: "#FF3E8A", cyan: "#2EC4E6",
+  amber: "#FFB000", chrome: "#F4F6FF", violet: "#9B7BFF", mint: "#5EE6A8", muted: "#A9A3D6",
 };
-const FALLBACK = ["#7aa2f7", "#bb9af7", "#9ece6a", "#e0af68", "#f7768e", "#2ac3de", "#ff9e64", "#73daca"];
+const STRIPES = [C.pink, C.yellow, C.cyan, C.chrome, C.amber, C.violet, C.mint, "#FF8A5C"];
+const BUNGEE = readFileSync(new URL("./bungee-subset.woff.b64", import.meta.url), "utf8").trim();
+const SANS = "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
 
-const T = { bg: "#1a1b27", border: "#2a2e42", title: "#70a5fd", text: "#c0caf5", muted: "#8b93b8", accent: "#bf91f3" };
-const FONT = "'Segoe UI', Ubuntu, 'Helvetica Neue', sans-serif";
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
-const fmt = (n) => (n >= 10000 ? `${(n / 1000).toFixed(1)}k` : n.toLocaleString("en-US"));
+const num = (n) => n.toLocaleString("en-US");
 
 async function gql(query) {
   const res = await fetch("https://api.github.com/graphql", {
     method: "POST", headers: { ...headers, "Content-Type": "application/json" }, body: JSON.stringify({ query }),
   });
   const body = await res.json();
-  if (!res.ok || body.errors) throw new Error(`GraphQL: ${res.status} ${JSON.stringify(body.errors ?? body)}`);
+  if (!res.ok || body.errors) throw new Error(`GitHub GraphQL request failed: ${res.status}`);
   return body.data;
 }
 
@@ -47,78 +45,108 @@ async function allRepos() {
   }
 }
 
-function card(width, height, body) {
+// Shared frame: indigo panel, chrome trim top and bottom, racing stripes in one corner.
+function panel(width, height, body, { stripes = true } = {}) {
+  const s = (off, w, color) =>
+    `<polygon points="${width - 150 + off},0 ${width - 150 + off + w},0 ${width - 230 + off + w},${height} ${width - 230 + off},${height}" fill="${color}"/>`;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img">
-<style>
-  text { font-family: ${FONT}; }
-  .fade { opacity: 0; animation: fade .5s ease-out forwards; }
-  @keyframes fade { to { opacity: 1; } }
-  @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-  .bar { transform-origin: left; animation: grow .8s ease-out forwards; }
-</style>
-<rect x=".5" y=".5" rx="10" width="${width - 1}" height="${height - 1}" fill="${T.bg}" stroke="${T.border}"/>
+<defs>
+  <style>
+    @font-face { font-family: Bungee; src: url(data:font/woff;base64,${BUNGEE}) format("woff"); }
+    .sign { font-family: Bungee, Impact, sans-serif; }
+    .sans { font-family: ${SANS}; }
+  </style>
+  <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#2A1F6E"/><stop offset=".55" stop-color="${C.indigo}"/><stop offset="1" stop-color="${C.deep}"/>
+  </linearGradient>
+  <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#B9BED6"/>
+    <stop offset=".5" stop-color="#6E7391"/><stop offset="1" stop-color="#E3E6F5"/>
+  </linearGradient>
+  <clipPath id="frame"><rect width="${width}" height="${height}" rx="14"/></clipPath>
+</defs>
+<g clip-path="url(#frame)">
+  <rect width="${width}" height="${height}" fill="url(#panel)"/>
+  ${stripes ? `<g opacity=".9">${s(0, 34, C.pink)}${s(44, 14, C.yellow)}${s(66, 6, C.cyan)}</g>` : ""}
+  <rect width="${width}" height="7" fill="url(#chrome)"/>
+  <rect y="${height - 7}" width="${width}" height="7" fill="url(#chrome)"/>
+</g>
 ${body}
 </svg>
 `;
 }
 
-function statsCard(v) {
+function wrap(text, max) {
+  const lines = [];
+  let line = "";
+  for (const word of text.split(" ")) {
+    if ((line + " " + word).trim().length > max) { lines.push(line); line = word; }
+    else line = (line + " " + word).trim();
+  }
+  return [...lines, line];
+}
+
+// Stats as a mobile-money style "Confirmed." SMS.
+function statsCard(v, now) {
   const c = v.contributionsCollection;
   const days = c.contributionCalendar.weeks.flatMap((w) => w.contributionDays);
   let streak = 0, best = 0;
   for (const d of days) { streak = d.contributionCount > 0 ? streak + 1 : 0; best = Math.max(best, streak); }
-  const rows = [
-    ["\u25c6", "Contributions (last year)", c.contributionCalendar.totalContributions],
-    ["\u25cf", "Commits", c.totalCommitContributions + c.restrictedContributionsCount],
-    ["\u2600", "Active days", days.filter((d) => d.contributionCount > 0).length],
-    ["\u21af", "Longest streak", `${best} days`],
-    ["\u21c4", "Pull requests", c.totalPullRequestContributions],
-    ["\u2713", "Code reviews", c.totalPullRequestReviewContributions],
-    ["\u25a3", "Repositories", v.repositories.totalCount],
-  ].filter(([, label, value]) => value !== 0 || label === "Repositories").slice(0, 6);
-  const body = rows.map(([icon, label, value], i) => {
-    const y = 72 + i * 25;
-    return `<g class="fade" style="animation-delay:${150 + i * 120}ms">
-  <text x="28" y="${y}" fill="${T.accent}" font-size="13">${icon}</text>
-  <text x="50" y="${y}" fill="${T.text}" font-size="14" font-weight="600">${label}</text>
-  <text x="365" y="${y}" fill="${T.text}" font-size="14" font-weight="700" text-anchor="end">${typeof value === "number" ? fmt(value) : esc(value)}</text>
-</g>`;
-  }).join("\n");
-  return card(400, 200, `<text x="25" y="38" fill="${T.title}" font-size="18" font-weight="700">${esc(v.name || v.login)}'s GitHub</text>\n${body}`);
+  const active = days.filter((d) => d.contributionCount > 0).length;
+  const total = c.contributionCalendar.totalContributions;
+
+  const date = now.toISOString().slice(0, 10);
+  const code = createHash("sha256").update(date).digest("hex").toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 10);
+  const [yy, mm, dd] = [date.slice(2, 4), date.slice(5, 7), date.slice(8, 10)];
+  const message = `${code} Confirmed. You have received ${num(total)} contributions from ` +
+    `${(v.name || v.login).toUpperCase()} in the last 12 months. Active on ${active} days, ` +
+    `longest streak ${best} days. Repositories: ${num(v.repositories.totalCount)}. Transaction cost, Ksh0.00.`;
+
+  const lines = wrap(message, 44);
+  const W = 420, lineH = 21, bubbleH = 28 + lines.length * lineH;
+  const H = Math.max(276, 96 + bubbleH + 44);
+  const text = lines.map((l, i) => `<tspan x="40" y="${118 + i * lineH}">${esc(l)}</tspan>`).join("");
+  return panel(W, H, `
+<circle cx="44" cy="46" r="20" fill="${C.yellow}"/>
+<text class="sign" x="44" y="53" font-size="17" fill="${C.deep}" text-anchor="middle">GH</text>
+<text class="sign" x="76" y="44" font-size="17" fill="${C.chrome}">GITHUB</text>
+<text class="sans" x="76" y="63" font-size="12.5" fill="${C.muted}">${dd}/${mm}/${yy}, 3:00 AM</text>
+<path d="M22 ${92 + bubbleH} q2 -10 2 -18 V108 a16 16 0 0 1 16 -16 h${W - 104} a16 16 0 0 1 16 16 v${bubbleH - 32} a16 16 0 0 1 -16 16 h-${W - 110} q-8 6 -18 2 z" fill="${C.chrome}"/>
+<text class="sans" font-size="14.5" fill="${C.deep}">${text}</text>
+<text class="sans" x="40" y="${H - 24}" font-size="12" fill="${C.muted}">Delivered</text>`);
 }
 
+// Languages as livery paint stripes: one slanted band per language, width by share.
 function languagesCard(totals) {
   const sum = totals.reduce((a, [, b]) => a + b, 0);
-  const topSum = totals.slice(0, 8).reduce((a, [, b]) => a + b, 0);
-  const top = totals.slice(0, 8).map(([name, bytes], i) => ({
-    name, pct: (bytes / sum) * 100, color: COLORS[name] ?? FALLBACK[i % FALLBACK.length],
-  }));
-  const barW = 350;
-  let x = 25;
-  const segs = top.map((l) => {
-    const w = Math.max(((l.pct * sum) / topSum / 100) * barW, 2);
-    const seg = `<rect x="${x.toFixed(1)}" y="55" width="${w.toFixed(1)}" height="10" fill="${l.color}"/>`;
+  const top = totals.slice(0, 6);
+  const topSum = top.reduce((a, [, b]) => a + b, 0);
+  const W = 420, H = 276, barX = 24, barW = W - 48, barY = 74, barH = 44, slant = 14;
+  let x = barX;
+  const bands = top.map(([name, bytes], i) => {
+    const w = Math.max((bytes / topSum) * barW, 10);
+    const color = STRIPES[i];
+    const p = `<polygon points="${x + slant},${barY} ${x + w + slant},${barY} ${x + w},${barY + barH} ${x},${barY + barH}" fill="${color}" stroke="${C.deep}" stroke-width="3"/>`;
     x += w;
-    return seg;
-  }).join("");
-  const legend = top.map((l, i) => {
+    return { name, pct: (bytes / sum) * 100, color, p };
+  });
+  const legend = bands.map((b, i) => {
     const col = i % 2, row = Math.floor(i / 2);
-    const lx = 25 + col * 180, ly = 95 + row * 26;
-    return `<g class="fade" style="animation-delay:${300 + i * 100}ms">
-  <circle cx="${lx + 5}" cy="${ly - 4}" r="5" fill="${l.color}"/>
-  <text x="${lx + 16}" y="${ly}" fill="${T.text}" font-size="13">${esc(l.name)} <tspan fill="${T.muted}">${l.pct.toFixed(1)}%</tspan></text>
-</g>`;
+    const lx = 28 + col * 196, ly = 156 + row * 38;
+    return `<polygon points="${lx + 6},${ly - 13} ${lx + 22},${ly - 13} ${lx + 16},${ly + 1} ${lx},${ly + 1}" fill="${b.color}"/>
+<text class="sans" x="${lx + 32}" y="${ly}" font-size="15" font-weight="600" fill="${C.chrome}">${esc(b.name)}</text>
+<text class="sans" x="${lx + 176}" y="${ly}" font-size="14" fill="${C.muted}" text-anchor="end">${b.pct.toFixed(1)}%</text>`;
   }).join("\n");
-  return card(400, 200, `<text x="25" y="38" fill="${T.title}" font-size="18" font-weight="700">Most used languages</text>
-<clipPath id="bar"><rect x="25" y="55" width="${barW}" height="10" rx="5"/></clipPath>
-<g clip-path="url(#bar)"><g class="bar">${segs}</g></g>
-${legend}`);
+  return panel(W, H, `
+<text class="sign" x="24" y="50" font-size="24" fill="${C.yellow}" stroke="${C.deep}" stroke-width="1">Languages</text>
+<g>${bands.map((b) => b.p).join("")}</g>
+${legend}`, { stripes: false });
 }
 
 const { viewer } = await gql(`{ viewer { login name
   repositories(ownerAffiliations: [OWNER, COLLABORATOR, ORGANIZATION_MEMBER]) { totalCount }
-  contributionsCollection { totalCommitContributions totalPullRequestContributions totalIssueContributions
-    totalPullRequestReviewContributions restrictedContributionsCount contributionCalendar { totalContributions weeks { contributionDays { contributionCount } } } } } }`);
+  contributionsCollection { totalCommitContributions restrictedContributionsCount
+    contributionCalendar { totalContributions weeks { contributionDays { contributionCount } } } } } }`);
 
 const repos = (await allRepos()).filter((r) => !r.fork && !r.archived && r.name !== r.owner.login);
 const bytes = {};
@@ -130,6 +158,6 @@ for (const r of repos) {
 }
 const totals = Object.entries(bytes).sort((a, b) => b[1] - a[1]);
 
-writeFileSync(`${outDir}/metrics.stats.svg`, statsCard(viewer));
+writeFileSync(`${outDir}/metrics.stats.svg`, statsCard(viewer, new Date()));
 writeFileSync(`${outDir}/metrics.languages.svg`, languagesCard(totals));
 console.log(`Wrote cards from ${repos.length - skipped} repos (${skipped} not readable), ${totals.length} languages.`);
