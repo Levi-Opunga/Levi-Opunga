@@ -239,18 +239,14 @@ def intro_card(t):
     y = pad + 34
     for i, (para, size, lh) in enumerate([(INTRO[0], 30, 42), (INTRO[1], 24, 36)]):
         face = TEXT_SEMI if i == 0 else TEXT
-        lines = wrap(face, para, size, W - pad * 2 - 70)
+        lines = wrap(face, para, size, W - pad * 2)
         for j, line in enumerate(lines):
             p, _ = face.path(line, size)
             parts.append(f'<g fill="{t["ink"]}" opacity="{1 if i == 0 else .82}" transform="translate({pad} {y + j * lh})">{p}</g>')
         y += len(lines) * lh + 22
     H = int(y - 22 - 36 + pad + 10)
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="About Levi">
-<clipPath id="c"><rect width="{W}" height="{H}" rx="18"/></clipPath>
-<g clip-path="url(#c)">
-  <rect width="{W}" height="{H}" fill="{t["paint"]}"/>
-  {corner_stripes(t, W, H)}
-</g>
+<rect width="{W}" height="{H}" rx="18" fill="{t["paint"]}"/>
 {"".join(parts)}
 </svg>
 """
