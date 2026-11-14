@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200" role="img">
+<style>
+  text { font-family: 'Segoe UI', Ubuntu, 'Helvetica Neue', sans-serif; }
+  .fade { opacity: 0; animation: fade .5s ease-out forwards; }
+  @keyframes fade { to { opacity: 1; } }
+  @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  .bar { transform-origin: left; animation: grow .8s ease-out forwards; }
+</style>
+<rect x=".5" y=".5" rx="10" width="399" height="199" fill="#1a1b27" stroke="#2a2e42"/>
+<text x="25" y="38" fill="#70a5fd" font-size="18" font-weight="700">Levi Opunga's GitHub</text>
+<g class="fade" style="animation-delay:150ms">
+  <text x="28" y="72" fill="#bf91f3" font-size="13">◆</text>
+  <text x="50" y="72" fill="#c0caf5" font-size="14" font-weight="600">Contributions (last year)</text>
+  <text x="365" y="72" fill="#c0caf5" font-size="14" font-weight="700" text-anchor="end">4,993</text>
+</g>
+<g class="fade" style="animation-delay:270ms">
+  <text x="28" y="97" fill="#bf91f3" font-size="13">●</text>
+  <text x="50" y="97" fill="#c0caf5" font-size="14" font-weight="600">Commits</text>
+  <text x="365" y="97" fill="#c0caf5" font-size="14" font-weight="700" text-anchor="end">4,989</text>
+</g>
+<g class="fade" style="animation-delay:390ms">
+  <text x="28" y="122" fill="#bf91f3" font-size="13">☀</text>
+  <text x="50" y="122" fill="#c0caf5" font-size="14" font-weight="600">Active days</text>
+  <text x="365" y="122" fill="#c0caf5" font-size="14" font-weight="700" text-anchor="end">303</text>
+</g>
+<g class="fade" style="animation-delay:510ms">
+  <text x="28" y="147" fill="#bf91f3" font-size="13">↯</text>
+  <text x="50" y="147" fill="#c0caf5" font-size="14" font-weight="600">Longest streak</text>
+  <text x="365" y="147" fill="#c0caf5" font-size="14" font-weight="700" text-anchor="end">34 days</text>
+</g>
+<g class="fade" style="animation-delay:630ms">
+  <text x="28" y="172" fill="#bf91f3" font-size="13">▣</text>
+  <text x="50" y="172" fill="#c0caf5" font-size="14" font-weight="600">Repositories</text>
+  <text x="365" y="172" fill="#c0caf5" font-size="14" font-weight="700" text-anchor="end">141</text>
+</g>
+</svg>
