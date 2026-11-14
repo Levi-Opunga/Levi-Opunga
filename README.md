@@ -1,4 +1,4 @@
-<img src="./assets/hero.svg" width="100%" alt="Levi Opunga, painted matatu-style. The LED route board reads 254 and cycles through Android, iOS, macOS, Windows, Linux and Web. The slogan reads: all screens, one codebase." />
+<img src="./assets/hero.svg?v=3f590fd" width="100%" alt="Levi Opunga, painted matatu-style. The LED route board reads 254 and cycles through Android, iOS, macOS, Windows, Linux and Web. The slogan reads: all screens, one codebase." />
 
 I build products that run on every screen you own: phones, laptops, the browser, and the servers behind them. I work from Kenya, so M-Pesa payments and KRA tax filing are a normal part of the job.
 
@@ -40,4 +40,4 @@ Next I'm learning OCaml and Haskell, on the way to writing my own compiler.
 - App Store processing can reject a build without a word in the dashboard. Check your email.
 - Never make a ScrollView the root of an expo-router tab.
 
-<a href="https://twitter.com/badAtVim"><img src="./assets/footer.svg" width="100%" alt="Follow me on X: @badAtVim" /></a>
+<a href="https://twitter.com/badAtVim"><img src="./assets/footer.svg?v=3f590fd" width="100%" alt="Follow me on X: @badAtVim" /></a>
