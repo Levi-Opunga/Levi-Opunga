@@ -6,11 +6,6 @@
 **Levi Opunga**, full-stack engineer in Kenya. I build mobile, web, desktop and backend software, including [TumaBoda](https://tumaboda.co.ke) same-day delivery, the Tessera SSH client, the Linky device-linking app, M-Pesa payments and KRA eTIMS tax filing. Find me on X at [@badAtVim](https://twitter.com/badAtVim).
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/intro-dark.svg?c7" />
-  <img src="./assets/intro-light.svg?c7" width="100%" alt="I build products that run on every screen you own: phones, laptops, the browser, and the servers behind them. I work from Kenya, so M-Pesa payments and KRA tax filing are a normal part of the job. Some of what I build is my own, like an SSH client and an app that links your devices. The rest is for businesses: shops, landlords, delivery companies, water utilities. I like the parts where software meets money and the physical world: payments, tax filing, live tracking, and meters in the field. Lately I've been running small AI models on the phone itself." />
-</picture>
-
-<picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/building-dark.svg?c6" />
   <img src="./assets/building-light.svg?c6" width="100%" alt="What I'm building" />
 </picture>
