@@ -147,7 +147,7 @@ def hero():
     W, H = 1280, 440
     first, w_first = text_path("LEVI", 0, 0, 132, 6)
     last, w_last = text_path("OPUNGA", 0, 0, 132, 6)
-    slogan, w_slogan = text_path("SKRINI ZOTE, MSIMBO MMOJA", 0, 0, 22, 2.5)
+    slogan, w_slogan = text_path("ALL SCREENS, ONE CODEBASE", 0, 0, 22, 2.5)
 
     def lettering(paths, x, y):
         return f"""<g transform="translate({x} {y})">
@@ -160,7 +160,7 @@ def hero():
     ribbon_w = w_slogan + 48
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-labelledby="t d">
 <title id="t">Levi Opunga</title>
-<desc id="d">A matatu-style painted banner. The LED route board reads 254 and cycles through Android, iOS, macOS, Windows, Linux and Web. The slogan says: all screens, one codebase.</desc>
+<desc id="d">A matatu-style painted banner. The LED route board reads 254 and cycles through Android, iOS, macOS, Windows, Linux and Web. The slogan reads: all screens, one codebase.</desc>
 {defs()}
 <rect width="{W}" height="{H}" rx="18" fill="url(#panel)"/>
 <clipPath id="body"><rect width="{W}" height="{H}" rx="18"/></clipPath>
@@ -183,7 +183,7 @@ def hero():
 
 def footer():
     W, H = 1280, 120
-    line, w = text_path("NIFUATE X: @BADATVIM", 0, 0, 30, 3)
+    line, w = text_path("FOLLOW ME ON X: @BADATVIM", 0, 0, 30, 3)
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="Follow @badAtVim on X">
 {defs()}
 <clipPath id="body"><rect width="{W}" height="{H}" rx="14"/></clipPath>
