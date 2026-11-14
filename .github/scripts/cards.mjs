@@ -34,7 +34,7 @@ async function gql(query) {
 
 async function rest(path) {
   const res = await fetch(`https://api.github.com${path}`, { headers: { ...headers, Accept: "application/vnd.github+json" } });
-  if (!res.ok) throw new Error(`GET ${path}: ${res.status} ${await res.text()}`);
+  if (!res.ok) throw new Error(`GitHub API request failed: ${res.status}`);
   return res.json();
 }
 
@@ -122,12 +122,14 @@ const { viewer } = await gql(`{ viewer { login name
 
 const repos = (await allRepos()).filter((r) => !r.fork && !r.archived && r.name !== r.owner.login);
 const bytes = {};
+let skipped = 0;
 for (const r of repos) {
-  const langs = await rest(`/repos/${r.full_name}/languages`);
+  // Some orgs refuse this token; skip them without printing names (Action logs are public).
+  const langs = await rest(`/repos/${r.full_name}/languages`).catch(() => (skipped++, {}));
   for (const [name, n] of Object.entries(langs)) if (!IGNORED.has(name)) bytes[name] = (bytes[name] ?? 0) + n;
 }
 const totals = Object.entries(bytes).sort((a, b) => b[1] - a[1]);
 
 writeFileSync(`${outDir}/metrics.stats.svg`, statsCard(viewer));
 writeFileSync(`${outDir}/metrics.languages.svg`, languagesCard(totals));
-console.log(`Wrote cards from ${repos.length} repos, ${totals.length} languages.`);
+console.log(`Wrote cards from ${repos.length - skipped} repos (${skipped} not readable), ${totals.length} languages.`);
