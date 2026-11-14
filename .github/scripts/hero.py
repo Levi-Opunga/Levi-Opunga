@@ -175,43 +175,59 @@ def section(t, title, body, height):
 """
 
 
-def projects(t):
-    col_w, gap, size, lh = 548, 56, 23, 33
-    rows, y, body = [PROJECTS[i:i + 2] for i in range(0, len(PROJECTS), 2)], 200, []
-    # Featured project spans the full width, with a larger name.
-    name, desc, stack_line = FEATURED
-    title, title_w = DISPLAY.path(name.upper(), 64, 2)
-    body.append(f'<g fill="{t["ink"]}" transform="translate(64 {y + 56})">{title}</g>')
-    url, _ = TEXT_SEMI.path("tumaboda.co.ke", 22)
-    body.append(f'<g fill="{t["green"]}" transform="translate({64 + title_w + 24} {y + 54})">{url}</g>')
-    lines = wrap(TEXT, desc, 25, 1280 - 128)
-    for i, line in enumerate(lines):
-        p, _ = TEXT.path(line, 25)
-        body.append(f'<g fill="{t["ink"]}" opacity=".86" transform="translate(64 {y + 102 + i * 36})">{p}</g>')
-    sy = y + 102 + len(lines) * 36 + 10
+def slug(name):
+    return "".join(ch if ch.isalnum() else "-" for ch in name.lower()).strip("-")
+
+
+def corner_stripes(t, width, height):
+    bands = [(t["black"], 12), (t["white"], 3), (t["red"], 12), (t["white"], 3), (t["green"], 12)]
+    x, out = width - 70, []
+    for color, w in bands:
+        out.append(f'<polygon points="{x},{height} {x + w},{height} {x + w + 150},0 {x + 150},0" fill="{color}"/>')
+        x += w
+    return "".join(out)
+
+
+def project_card(t, name, desc, stack_line, width, height, url=None):
+    """One project on its own painted card: name, description, stack."""
+    pad, size, lh = 44, 24, 34
+    title, title_w = DISPLAY.path(name.upper(), 52 if url else 46, 1.5)
+    parts = [f'<g fill="{t["ink"]}" transform="translate({pad} {pad + 44})">{title}</g>']
+    if url:
+        u, _ = TEXT_SEMI.path(url, 22)
+        parts.append(f'<g fill="{t["green"]}" transform="translate({pad + title_w + 22} {pad + 42})">{u}</g>')
+    for i, line in enumerate(wrap(TEXT, desc, size, width - pad * 2 - 40)):
+        p, _ = TEXT.path(line, size)
+        parts.append(f'<g fill="{t["ink"]}" opacity=".86" transform="translate({pad} {pad + 94 + i * lh})">{p}</g>')
     sp, _ = TEXT_SEMI.path(stack_line, 20)
-    body.append(f'<g fill="{t["muted"]}" transform="translate(64 {sy})">{sp}</g>')
-    y = sy + 54
-    body.append(f'<rect x="64" y="{y - 20}" width="{1280 - 128}" height="1.5" fill="{t["muted"]}" opacity=".35"/>')
-    for r, row in enumerate(rows):
-        heights = []
-        for c, (name, desc, stack) in enumerate(row):
-            x = 64 + c * (col_w + gap)
-            title, _ = DISPLAY.path(name.upper(), 40, 1.5)
-            parts = [f'<g fill="{t["ink"]}" transform="translate({x} {y + 36})">{title}</g>']
-            lines = wrap(TEXT, desc, size, col_w)
-            for i, line in enumerate(lines):
-                p, _ = TEXT.path(line, size)
-                parts.append(f'<g fill="{t["ink"]}" opacity=".86" transform="translate({x} {y + 80 + i * lh})">{p}</g>')
-            sy = y + 80 + len(lines) * lh + 10
-            sp, _ = TEXT_SEMI.path(stack, 20)
-            parts.append(f'<g fill="{t["muted"]}" transform="translate({x} {sy})">{sp}</g>')
-            body.append("".join(parts))
-            heights.append(sy - y + 20)
-        y += max(heights) + 34
-        if r < len(rows) - 1:
-            body.append(f'<rect x="64" y="{y - 20}" width="{1280 - 128}" height="1.5" fill="{t["muted"]}" opacity=".35"/>')
-    return section(t, "WHAT I'M BUILDING", "".join(body), y + 30)
+    parts.append(f'<g fill="{t["muted"]}" transform="translate({pad} {height - pad + 6})">{sp}</g>')
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}" role="img" aria-label="{name}">
+<clipPath id="c"><rect width="{width}" height="{height}" rx="18"/></clipPath>
+<g clip-path="url(#c)">
+  <rect width="{width}" height="{height}" fill="{t["paint"]}"/>
+  {corner_stripes(t, width, height)}
+</g>
+{"".join(parts)}
+</svg>
+"""
+
+
+def card_height(desc, width, size=24, lh=34, pad=44):
+    lines = len(wrap(TEXT, desc, size, width - pad * 2 - 40))
+    return pad + 94 + (lines - 1) * lh + 56 + pad
+
+
+def project_cards(t):
+    """Yield (filename, svg). Small cards share one height so pairs line up."""
+    feat_name, feat_desc, feat_stack = FEATURED
+    yield f"project-{slug(feat_name)}", project_card(t, feat_name, feat_desc, feat_stack, 1280, card_height(feat_desc, 1280), "tumaboda.co.ke")
+    h = max(card_height(d, 620) for _, d, _ in PROJECTS)
+    for name, desc, stack_line in PROJECTS:
+        yield f"project-{slug(name)}", project_card(t, name, desc, stack_line, 620, h)
+
+
+def building_header(t):
+    return section(t, "WHAT I'M BUILDING", "", 168)
 
 
 def stack(t):
@@ -235,12 +251,14 @@ def numbers_header(t):
 
 
 OUT.mkdir(exist_ok=True)
-for old in ("hero.svg", "footer.svg"):
+for old in ("hero.svg", "footer.svg", "projects-light.svg", "projects-dark.svg"):
     (OUT / old).unlink(missing_ok=True)
 for mode, t in THEMES.items():
     (OUT / f"hero-{mode}.svg").write_text(hero(t))
     (OUT / f"footer-{mode}.svg").write_text(footer(t))
-    (OUT / f"projects-{mode}.svg").write_text(projects(t))
+    (OUT / f"building-{mode}.svg").write_text(building_header(t))
+    for name, svg in project_cards(t):
+        (OUT / f"{name}-{mode}.svg").write_text(svg)
     (OUT / f"stack-{mode}.svg").write_text(stack(t))
     (OUT / f"numbers-{mode}.svg").write_text(numbers_header(t))
 print("wrote", sorted(p.name for p in OUT.iterdir()))
