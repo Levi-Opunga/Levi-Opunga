@@ -3,7 +3,7 @@
   <img src="./assets/hero-light.svg?c6" width="100%" alt="Levi Opunga. Shipping to Android, iOS, macOS, Windows, Linux and the web. Full-stack engineer in Kenya." />
 </picture>
 
-**Levi Opunga**, full-stack engineer in Kenya. I build mobile, web, desktop and backend software, including [TumaBoda](https://tumaboda.co.ke) same-day delivery, the [Urban Market](https://www.urbanmarket.co.ke/) shop, the Boma property manager, the PesaFlow budget tracker, the Tessera SSH client and the Linky device-linking app, with M-Pesa payments and KRA eTIMS tax filing built in. Find me on X at [@badAtVim](https://twitter.com/badAtVim).
+**Levi Opunga**, full-stack engineer in Kenya. I build mobile, web, desktop and backend software, including [TumaBoda](https://tumaboda.co.ke) same-day delivery, the [Urban Market](https://www.urbanmarket.co.ke/) shop, the [TsavoSync](https://tsavosync.com/) prepaid water meters, the Boma property manager, the PesaFlow budget tracker, the Tessera SSH client and the Linky device-linking app, with M-Pesa payments and KRA eTIMS tax filing built in. Find me on X at [@badAtVim](https://twitter.com/badAtVim).
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/building-dark.svg?c6" />
@@ -17,10 +17,12 @@
   </picture>
 </a>
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./assets/project-tsavosync-dark.svg?c6" />
-  <img src="./assets/project-tsavosync-light.svg?c6" width="100%" alt="TsavoSync: prepaid smart water meters for utilities. Customers top up with mobile money and get a meter token in seconds, issued through a hardware security module. The utility tracks readings, credit and tariffs from one dashboard. Kotlin, Spring Boot, GraphQL, Go, Next.js, Expo." />
-</picture>
+<a href="https://tsavosync.com/">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/project-tsavosync-dark.svg?c8" />
+    <img src="./assets/project-tsavosync-light.svg?c8" width="100%" alt="TsavoSync, tsavosync.com: prepaid smart water meters for utilities. Customers top up with mobile money and get a meter token in seconds, issued through a hardware security module. The utility tracks readings, credit and tariffs from one dashboard. Kotlin, Spring Boot, GraphQL, Go, Next.js, Expo." />
+  </picture>
+</a>
 
 <p>
   <picture>

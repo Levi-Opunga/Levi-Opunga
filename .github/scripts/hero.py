@@ -123,7 +123,7 @@ def footer(t):
 TEXT_SEMI = Face("BricolageGrotesque.ttf", wght=600, wdth=100, opsz=18)
 
 FEATURED = [("TumaBoda", "Same-day boda-boda delivery across Kenya. Riders get an app, customers follow their parcel on a live map, and shops book deliveries from their own checkout.", "Bun, Elysia, PostGIS, Go, Expo, Next.js", "tumaboda.co.ke"),
-            ("TsavoSync", "Prepaid smart water meters for utilities. Customers top up with mobile money and get a meter token in seconds, issued through a hardware security module. The utility tracks readings, credit and tariffs from one dashboard.", "Kotlin, Spring Boot, GraphQL, Go, Next.js, Expo", None)]
+            ("TsavoSync", "Prepaid smart water meters for utilities. Customers top up with mobile money and get a meter token in seconds, issued through a hardware security module. The utility tracks readings, credit and tariffs from one dashboard.", "Kotlin, Spring Boot, GraphQL, Go, Next.js, Expo", "tsavosync.com")]
 
 PROJECTS = [
     ("Tessera", "A desktop SSH client that keeps your hosts, keys and snippets in a git repo you own. Secrets are encrypted per person before they're committed, so no company holds your credentials.", "TypeScript, Electron, React"),
