@@ -120,10 +120,110 @@ def footer(t):
 """
 
 
+TEXT_SEMI = Face("BricolageGrotesque.ttf", wght=600, wdth=100, opsz=18)
+
+PROJECTS = [
+    ("Tessera", "A desktop SSH client that keeps your hosts, keys and snippets in a git repo you own. Secrets are encrypted per person before they're committed, so no company holds your credentials.", "TypeScript, Electron, React"),
+    ("Linky", "Links your phones and computers. Share the clipboard and files, mirror notifications, control media, or ring a lost phone, over the local network or through a relay.", "Kotlin Multiplatform, Compose, Ktor"),
+    ("Convo-Hub", "A platform for running business conversations on WhatsApp, with its own web app and a self-hosted deploy stack.", "Kotlin, TypeScript, Docker"),
+    ("Multi-store commerce", "One Medusa backend running six storefronts, from fragrance to coffee to a restaurant menu, each with its own theme and checkout. Plus a desktop point of sale.", "Astro, Medusa, TypeScript"),
+    ("Rent and tax", "Rent, leases and M-Pesa collection for landlords, and a gateway that files invoices with KRA eTIMS, retrying the ones that fail.", "Hono, Drizzle, PostgreSQL, Go"),
+    ("On-device AI", "Small local models that turn what you say into actions in a mobile app, without sending your words to a server.", "React Native, Expo"),
+]
+
+STACK = [
+    ("Mobile", "React Native and Expo, Kotlin and Compose Multiplatform, Android in Java, a little Swift when iOS demands it."),
+    ("Web", "Next.js, Astro, React with TanStack, Svelte, Angular, Tailwind."),
+    ("Backend", "Hono and Drizzle, Ktor, Spring Boot, Go, Medusa."),
+    ("Data", "PostgreSQL, SQLite, MongoDB, MySQL, Redis, Neo4j, Supabase."),
+    ("Shipping", "Docker, Traefik, GitHub Actions, Vercel, fastlane."),
+]
+
+
+def wrap(face, text, size, width):
+    """Greedy line-wrap using the face's real advance widths."""
+    space = face.path(" ", size)[1]
+    lines, line, line_w = [], [], 0.0
+    for word in text.split():
+        w = face.path(word, size)[1]
+        if line and line_w + space + w > width:
+            lines.append(" ".join(line))
+            line, line_w = [word], w
+        else:
+            line_w += (space if line else 0) + w
+            line.append(word)
+    return lines + [" ".join(line)]
+
+
+def flag_rule(t, x, y):
+    """A short black, red, green rule under a section title."""
+    return "".join(f'<rect x="{x + i * 46}" y="{y}" width="40" height="6" fill="{c}"/>'
+                   for i, c in enumerate([t["black"] if t["paint"] != "#16181C" else t["white"], t["red"], t["green"]]))
+
+
+def section(t, title, body, height):
+    W = 1280
+    name, _ = DISPLAY.path(title, 64, 2)
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{height}" viewBox="0 0 {W} {height}" role="img">
+<rect width="{W}" height="{height}" rx="22" fill="{t["paint"]}"/>
+<g fill="{t["ink"]}" transform="translate(64 108)">{name}</g>
+{flag_rule(t, 66, 132)}
+{body}
+</svg>
+"""
+
+
+def projects(t):
+    col_w, gap, size, lh = 548, 56, 23, 33
+    rows, y, body = [PROJECTS[i:i + 2] for i in range(0, len(PROJECTS), 2)], 200, []
+    for r, row in enumerate(rows):
+        heights = []
+        for c, (name, desc, stack) in enumerate(row):
+            x = 64 + c * (col_w + gap)
+            title, _ = DISPLAY.path(name.upper(), 40, 1.5)
+            parts = [f'<g fill="{t["ink"]}" transform="translate({x} {y + 36})">{title}</g>']
+            lines = wrap(TEXT, desc, size, col_w)
+            for i, line in enumerate(lines):
+                p, _ = TEXT.path(line, size)
+                parts.append(f'<g fill="{t["ink"]}" opacity=".86" transform="translate({x} {y + 80 + i * lh})">{p}</g>')
+            sy = y + 80 + len(lines) * lh + 10
+            sp, _ = TEXT_SEMI.path(stack, 20)
+            parts.append(f'<g fill="{t["muted"]}" transform="translate({x} {sy})">{sp}</g>')
+            body.append("".join(parts))
+            heights.append(sy - y + 20)
+        y += max(heights) + 34
+        if r < len(rows) - 1:
+            body.append(f'<rect x="64" y="{y - 20}" width="{1280 - 128}" height="1.5" fill="{t["muted"]}" opacity=".35"/>')
+    return section(t, "WHAT I'M BUILDING", "".join(body), y + 30)
+
+
+def stack(t):
+    y, body, label_w, size, lh = 200, [], 200, 24, 34
+    for label, items in STACK:
+        lp, _ = DISPLAY.path(label.upper(), 32, 1.5)
+        body.append(f'<g fill="{t["ink"]}" transform="translate(64 {y + 26})">{lp}</g>')
+        lines = wrap(TEXT, items, size, 1280 - 128 - label_w)
+        for i, line in enumerate(lines):
+            p, _ = TEXT.path(line, size)
+            body.append(f'<g fill="{t["ink"]}" opacity=".86" transform="translate({64 + label_w} {y + 25 + i * lh})">{p}</g>')
+        y += 25 + len(lines) * lh + 24
+    note, _ = TEXT_SEMI.path("Next: OCaml and Haskell, on the way to writing my own compiler.", 22)
+    body.append(f'<rect x="64" y="{y + 4}" width="{1280 - 128}" height="1.5" fill="{t["muted"]}" opacity=".35"/>')
+    body.append(f'<g fill="{t["muted"]}" transform="translate(64 {y + 50})">{note}</g>')
+    return section(t, "WHAT I REACH FOR", "".join(body), y + 86)
+
+
+def numbers_header(t):
+    return section(t, "THE NUMBERS", "", 168)
+
+
 OUT.mkdir(exist_ok=True)
 for old in ("hero.svg", "footer.svg"):
     (OUT / old).unlink(missing_ok=True)
 for mode, t in THEMES.items():
     (OUT / f"hero-{mode}.svg").write_text(hero(t))
     (OUT / f"footer-{mode}.svg").write_text(footer(t))
+    (OUT / f"projects-{mode}.svg").write_text(projects(t))
+    (OUT / f"stack-{mode}.svg").write_text(stack(t))
+    (OUT / f"numbers-{mode}.svg").write_text(numbers_header(t))
 print("wrote", sorted(p.name for p in OUT.iterdir()))
