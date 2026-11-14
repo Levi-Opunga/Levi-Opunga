@@ -129,7 +129,7 @@ PROJECTS = [
     ("Tessera", "A desktop SSH client that keeps your hosts, keys and snippets in a git repo you own. Secrets are encrypted per person before they're committed, so no company holds your credentials.", "TypeScript, Electron, React"),
     ("Linky", "Links your phones and computers. Share the clipboard and files, mirror notifications, control media, or ring a lost phone, over the local network or through a relay.", "Kotlin Multiplatform, Compose, Ktor"),
     ("Convo-Hub", "A platform for running business conversations on WhatsApp, with its own web app and a self-hosted deploy stack.", "Kotlin, TypeScript, Docker"),
-    ("Multi-store commerce", "One Medusa backend running six storefronts, from fragrance to coffee to a restaurant menu, each with its own theme and checkout. Plus a desktop point of sale.", "Astro, Medusa, TypeScript"),
+    ("Urban Market", "Online shopping in Kenya, every shop in one basket. One Medusa backend runs many shops, each with its own theme and checkout, and sellers go live from a WhatsApp price list in minutes.", "Astro, Medusa, TypeScript", "urbanmarket.co.ke"),
     ("Boma", "Property management for Kenyan landlords and managing agents: rent, leases, invoicing, M-Pesa collection, KRA tax filing and landlord payouts.", "Hono, Drizzle, PostgreSQL, React"),
     ("PesaFlow", "A budget tracker that fills itself in. It reads your M-Pesa and bank messages, files each transaction, and learns your categories. A small AI model on the phone answers questions about your money.", "React Native, Expo, SQLite, on-device AI"),
 ]
@@ -222,9 +222,9 @@ def project_cards(t):
     """Yield (filename, svg). Small cards share one height so pairs line up."""
     for feat_name, feat_desc, feat_stack, url in FEATURED:
         yield f"project-{slug(feat_name)}", project_card(t, feat_name, feat_desc, feat_stack, 1280, card_height(feat_desc, 1280), url, featured=True)
-    h = max(card_height(d, 620) for _, d, _ in PROJECTS)
-    for name, desc, stack_line in PROJECTS:
-        yield f"project-{slug(name)}", project_card(t, name, desc, stack_line, 620, h)
+    h = max(card_height(p[1], 620) for p in PROJECTS)
+    for name, desc, stack_line, *url in PROJECTS:
+        yield f"project-{slug(name)}", project_card(t, name, desc, stack_line, 620, h, url[0] if url else None)
 
 
 def building_header(t):
