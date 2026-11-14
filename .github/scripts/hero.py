@@ -122,6 +122,8 @@ def footer(t):
 
 TEXT_SEMI = Face("BricolageGrotesque.ttf", wght=600, wdth=100, opsz=18)
 
+FEATURED = ("TumaBoda", "Same-day boda-boda delivery across Kenya. Riders get an app, customers follow their parcel on a live map, and shops book deliveries from their own checkout.", "Bun, Elysia, PostGIS, Go, Expo, Next.js")
+
 PROJECTS = [
     ("Tessera", "A desktop SSH client that keeps your hosts, keys and snippets in a git repo you own. Secrets are encrypted per person before they're committed, so no company holds your credentials.", "TypeScript, Electron, React"),
     ("Linky", "Links your phones and computers. Share the clipboard and files, mirror notifications, control media, or ring a lost phone, over the local network or through a relay.", "Kotlin Multiplatform, Compose, Ktor"),
@@ -176,6 +178,21 @@ def section(t, title, body, height):
 def projects(t):
     col_w, gap, size, lh = 548, 56, 23, 33
     rows, y, body = [PROJECTS[i:i + 2] for i in range(0, len(PROJECTS), 2)], 200, []
+    # Featured project spans the full width, with a larger name.
+    name, desc, stack_line = FEATURED
+    title, title_w = DISPLAY.path(name.upper(), 64, 2)
+    body.append(f'<g fill="{t["ink"]}" transform="translate(64 {y + 56})">{title}</g>')
+    url, _ = TEXT_SEMI.path("tumaboda.co.ke", 22)
+    body.append(f'<g fill="{t["green"]}" transform="translate({64 + title_w + 24} {y + 54})">{url}</g>')
+    lines = wrap(TEXT, desc, 25, 1280 - 128)
+    for i, line in enumerate(lines):
+        p, _ = TEXT.path(line, 25)
+        body.append(f'<g fill="{t["ink"]}" opacity=".86" transform="translate(64 {y + 102 + i * 36})">{p}</g>')
+    sy = y + 102 + len(lines) * 36 + 10
+    sp, _ = TEXT_SEMI.path(stack_line, 20)
+    body.append(f'<g fill="{t["muted"]}" transform="translate(64 {sy})">{sp}</g>')
+    y = sy + 54
+    body.append(f'<rect x="64" y="{y - 20}" width="{1280 - 128}" height="1.5" fill="{t["muted"]}" opacity=".35"/>')
     for r, row in enumerate(rows):
         heights = []
         for c, (name, desc, stack) in enumerate(row):
