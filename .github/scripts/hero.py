@@ -227,6 +227,35 @@ def project_cards(t):
         yield f"project-{slug(name)}", project_card(t, name, desc, stack_line, 620, h)
 
 
+INTRO = [
+    "I build products that run on every screen you own: phones, laptops, the browser, and the servers behind them. I work from Kenya, so M-Pesa payments and KRA tax filing are a normal part of the job.",
+    "Some of what I build is my own, like an SSH client and an app that links your devices. The rest is for businesses: shops, landlords, delivery companies, water utilities. I like the parts where software meets money and the physical world: payments, tax filing, live tracking, and meters in the field. Lately I've been running small AI models on the phone itself.",
+]
+
+
+def intro_card(t):
+    """The intro as a card: first paragraph larger, second in body size."""
+    W, pad, parts = 1280, 56, []
+    y = pad + 34
+    for i, (para, size, lh) in enumerate([(INTRO[0], 30, 42), (INTRO[1], 24, 36)]):
+        face = TEXT_SEMI if i == 0 else TEXT
+        lines = wrap(face, para, size, W - pad * 2 - 70)
+        for j, line in enumerate(lines):
+            p, _ = face.path(line, size)
+            parts.append(f'<g fill="{t["ink"]}" opacity="{1 if i == 0 else .82}" transform="translate({pad} {y + j * lh})">{p}</g>')
+        y += len(lines) * lh + 22
+    H = int(y - 22 - 36 + pad + 10)
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="About Levi">
+<clipPath id="c"><rect width="{W}" height="{H}" rx="18"/></clipPath>
+<g clip-path="url(#c)">
+  <rect width="{W}" height="{H}" fill="{t["paint"]}"/>
+  {corner_stripes(t, W, H)}
+</g>
+{"".join(parts)}
+</svg>
+"""
+
+
 def building_header(t):
     return section(t, "WHAT I'M BUILDING", "", 168)
 
@@ -258,6 +287,7 @@ for mode, t in THEMES.items():
     (OUT / f"hero-{mode}.svg").write_text(hero(t))
     (OUT / f"footer-{mode}.svg").write_text(footer(t))
     (OUT / f"building-{mode}.svg").write_text(building_header(t))
+    (OUT / f"intro-{mode}.svg").write_text(intro_card(t))
     for name, svg in project_cards(t):
         (OUT / f"{name}-{mode}.svg").write_text(svg)
     (OUT / f"stack-{mode}.svg").write_text(stack(t))
