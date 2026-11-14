@@ -1,36 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="200" viewBox="0 0 400 200" role="img">
-<style>
-  text { font-family: 'Segoe UI', Ubuntu, 'Helvetica Neue', sans-serif; }
-  .fade { opacity: 0; animation: fade .5s ease-out forwards; }
-  @keyframes fade { to { opacity: 1; } }
-  @keyframes grow { from { transform: scaleX(0); } to { transform: scaleX(1); } }
-  .bar { transform-origin: left; animation: grow .8s ease-out forwards; }
-</style>
-<rect x=".5" y=".5" rx="10" width="399" height="199" fill="#1a1b27" stroke="#2a2e42"/>
-<text x="25" y="38" fill="#70a5fd" font-size="18" font-weight="700">Levi Opunga's GitHub</text>
-<g class="fade" style="animation-delay:150ms">
-  <text x="28" y="72" fill="#bf91f3" font-size="13">◆</text>
-  <text x="50" y="72" fill="#c0caf5" font-size="14" font-weight="600">Contributions (last year)</text>
-  <text x="365" y="72" fill="#c0caf5" font-size="14" font-weight="700" text-anchor="end">4,993</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="276" viewBox="0 0 420 276" role="img">
+<defs>
+  <style>
+    @font-face { font-family: Bungee; src: url(data:font/woff;base64,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) format("woff"); }
+    .sign { font-family: Bungee, Impact, sans-serif; }
+    .sans { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+  </style>
+  <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#2A1F6E"/><stop offset=".55" stop-color="#1B1446"/><stop offset="1" stop-color="#110C30"/>
+  </linearGradient>
+  <linearGradient id="chrome" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#FFFFFF"/><stop offset=".45" stop-color="#B9BED6"/>
+    <stop offset=".5" stop-color="#6E7391"/><stop offset="1" stop-color="#E3E6F5"/>
+  </linearGradient>
+  <clipPath id="frame"><rect width="420" height="276" rx="14"/></clipPath>
+</defs>
+<g clip-path="url(#frame)">
+  <rect width="420" height="276" fill="url(#panel)"/>
+  <g opacity=".9"><polygon points="270,0 304,0 224,276 190,276" fill="#FF3E8A"/><polygon points="314,0 328,0 248,276 234,276" fill="#FFD23F"/><polygon points="336,0 342,0 262,276 256,276" fill="#2EC4E6"/></g>
+  <rect width="420" height="7" fill="url(#chrome)"/>
+  <rect y="269" width="420" height="7" fill="url(#chrome)"/>
 </g>
-<g class="fade" style="animation-delay:270ms">
-  <text x="28" y="97" fill="#bf91f3" font-size="13">●</text>
-  <text x="50" y="97" fill="#c0caf5" font-size="14" font-weight="600">Commits</text>
-  <text x="365" y="97" fill="#c0caf5" font-size="14" font-weight="700" text-anchor="end">4,989</text>
-</g>
-<g class="fade" style="animation-delay:390ms">
-  <text x="28" y="122" fill="#bf91f3" font-size="13">☀</text>
-  <text x="50" y="122" fill="#c0caf5" font-size="14" font-weight="600">Active days</text>
-  <text x="365" y="122" fill="#c0caf5" font-size="14" font-weight="700" text-anchor="end">303</text>
-</g>
-<g class="fade" style="animation-delay:510ms">
-  <text x="28" y="147" fill="#bf91f3" font-size="13">↯</text>
-  <text x="50" y="147" fill="#c0caf5" font-size="14" font-weight="600">Longest streak</text>
-  <text x="365" y="147" fill="#c0caf5" font-size="14" font-weight="700" text-anchor="end">34 days</text>
-</g>
-<g class="fade" style="animation-delay:630ms">
-  <text x="28" y="172" fill="#bf91f3" font-size="13">▣</text>
-  <text x="50" y="172" fill="#c0caf5" font-size="14" font-weight="600">Repositories</text>
-  <text x="365" y="172" fill="#c0caf5" font-size="14" font-weight="700" text-anchor="end">141</text>
-</g>
+
+<circle cx="44" cy="46" r="20" fill="#FFD23F"/>
+<text class="sign" x="44" y="53" font-size="17" fill="#110C30" text-anchor="middle">GH</text>
+<text class="sign" x="76" y="44" font-size="17" fill="#F4F6FF">GITHUB</text>
+<text class="sans" x="76" y="63" font-size="12.5" fill="#A9A3D6">14/11/26, 3:00 AM</text>
+<path d="M22 225 q2 -10 2 -18 V108 a16 16 0 0 1 16 -16 h316 a16 16 0 0 1 16 16 v101 a16 16 0 0 1 -16 16 h-310 q-8 6 -18 2 z" fill="#F4F6FF"/>
+<text class="sans" font-size="14.5" fill="#110C30"><tspan x="40" y="118">57CAC9F860 Confirmed. You have received</tspan><tspan x="40" y="139">4,994 contributions from LEVI OPUNGA in the</tspan><tspan x="40" y="160">last 12 months. Active on 303 days, longest</tspan><tspan x="40" y="181">streak 34 days. Repositories: 141.</tspan><tspan x="40" y="202">Transaction cost, Ksh0.00.</tspan></text>
+<text class="sans" x="40" y="252" font-size="12" fill="#A9A3D6">Delivered</text>
 </svg>
