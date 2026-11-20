@@ -13,13 +13,13 @@
 </g>
 
 <text class="display" x="24" y="56" font-size="34" fill="#000000">LANGUAGES</text>
-<g><polygon points="36,82 247.16825673825946,82 235.16825673825946,122 24,122" fill="#000000" stroke="#F3F4F6" stroke-width="3"/><polygon points="247.16825673825946,82 284.9823500246974,82 272.9823500246974,122 235.16825673825946,122" fill="#BB0000" stroke="#F3F4F6" stroke-width="3"/><polygon points="284.9823500246974,82 297.72648684249606,82 285.72648684249606,122 272.9823500246974,122" fill="#006B3F" stroke="#F3F4F6" stroke-width="3"/><polygon points="297.72648684249606,82 306.7274803315415,82 294.7274803315415,122 285.72648684249606,122" fill="#6B7280" stroke="#F3F4F6" stroke-width="3"/><polygon points="306.7274803315415,82 314.7274803315415,82 302.7274803315415,122 294.7274803315415,122" fill="#9CA3AF" stroke="#F3F4F6" stroke-width="3"/><polygon points="314.7274803315415,82 322.7274803315415,82 310.7274803315415,122 302.7274803315415,122" fill="#C9CDD3" stroke="#F3F4F6" stroke-width="3"/></g>
+<g><polygon points="36,82 247.57799149303688,82 235.57799149303688,122 24,122" fill="#000000" stroke="#F3F4F6" stroke-width="3"/><polygon points="247.57799149303688,82 285.16698880622687,82 273.16698880622687,122 235.57799149303688,122" fill="#BB0000" stroke="#F3F4F6" stroke-width="3"/><polygon points="285.16698880622687,82 297.8352635940021,82 285.8352635940021,122 273.16698880622687,122" fill="#006B3F" stroke="#F3F4F6" stroke-width="3"/><polygon points="297.8352635940021,82 306.78267686431093,82 294.78267686431093,122 285.8352635940021,122" fill="#6B7280" stroke="#F3F4F6" stroke-width="3"/><polygon points="306.78267686431093,82 314.78267686431093,82 302.78267686431093,122 294.78267686431093,122" fill="#9CA3AF" stroke="#F3F4F6" stroke-width="3"/><polygon points="314.78267686431093,82 322.78267686431093,82 310.78267686431093,122 302.78267686431093,122" fill="#C9CDD3" stroke="#F3F4F6" stroke-width="3"/></g>
 <polygon points="31,152 44,152 39,165 26,165" fill="#000000" stroke="#4B5563" stroke-width="0"/>
 <text class="sans" x="52" y="164" font-size="14" font-weight="600" fill="#000000">TypeScript</text>
-<text class="sans" x="186" y="164" font-size="13.5" fill="#4B5563" text-anchor="end" style="font-variant-numeric: tabular-nums">72.9%</text>
+<text class="sans" x="186" y="164" font-size="13.5" fill="#4B5563" text-anchor="end" style="font-variant-numeric: tabular-nums">73.0%</text>
 <polygon points="205,152 218,152 213,165 200,165" fill="#BB0000" stroke="#4B5563" stroke-width="0"/>
 <text class="sans" x="226" y="164" font-size="14" font-weight="600" fill="#000000">Kotlin</text>
-<text class="sans" x="360" y="164" font-size="13.5" fill="#4B5563" text-anchor="end" style="font-variant-numeric: tabular-nums">13.1%</text>
+<text class="sans" x="360" y="164" font-size="13.5" fill="#4B5563" text-anchor="end" style="font-variant-numeric: tabular-nums">13.0%</text>
 <polygon points="31,186 44,186 39,199 26,199" fill="#006B3F" stroke="#4B5563" stroke-width="0"/>
 <text class="sans" x="52" y="198" font-size="14" font-weight="600" fill="#000000">JavaScript</text>
 <text class="sans" x="186" y="198" font-size="13.5" fill="#4B5563" text-anchor="end" style="font-variant-numeric: tabular-nums">4.4%</text>
