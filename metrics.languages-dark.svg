@@ -13,13 +13,13 @@
 </g>
 
 <text class="display" x="24" y="56" font-size="34" fill="#F5F5F5">LANGUAGES</text>
-<g><polygon points="36,82 247.97670444898424,82 235.97670444898424,122 24,122" fill="#F5F5F5" stroke="#16181C" stroke-width="3"/><polygon points="247.97670444898424,82 284.3540339047476,82 272.3540339047476,122 235.97670444898424,122" fill="#D42222" stroke="#16181C" stroke-width="3"/><polygon points="284.3540339047476,82 296.6463763811787,82 284.6463763811787,122 272.3540339047476,122" fill="#0E8A55" stroke="#16181C" stroke-width="3"/><polygon points="296.6463763811787,82 305.28556475789486,82 293.28556475789486,122 284.6463763811787,122" fill="#9CA3AF" stroke="#16181C" stroke-width="3"/><polygon points="305.28556475789486,82 313.28556475789486,82 301.28556475789486,122 293.28556475789486,122" fill="#6B7280" stroke="#16181C" stroke-width="3"/><polygon points="313.28556475789486,82 321.28556475789486,82 309.28556475789486,122 301.28556475789486,122" fill="#474B53" stroke="#16181C" stroke-width="3"/></g>
+<g><polygon points="36,82 246.73457435260758,82 234.73457435260758,122 24,122" fill="#F5F5F5" stroke="#16181C" stroke-width="3"/><polygon points="246.73457435260758,82 282.83191188331585,82 270.83191188331585,122 234.73457435260758,122" fill="#D42222" stroke="#16181C" stroke-width="3"/><polygon points="282.83191188331585,82 295.057566332199,82 283.057566332199,122 270.83191188331585,122" fill="#0E8A55" stroke="#16181C" stroke-width="3"/><polygon points="295.057566332199,82 303.62875080159716,82 291.62875080159716,122 283.057566332199,122" fill="#9CA3AF" stroke="#16181C" stroke-width="3"/><polygon points="303.62875080159716,82 311.62875080159716,82 299.62875080159716,122 291.62875080159716,122" fill="#6B7280" stroke="#16181C" stroke-width="3"/><polygon points="311.62875080159716,82 319.62875080159716,82 307.62875080159716,122 299.62875080159716,122" fill="#474B53" stroke="#16181C" stroke-width="3"/></g>
 <polygon points="31,152 44,152 39,165 26,165" fill="#F5F5F5" stroke="#9CA3AF" stroke-width="0"/>
 <text class="sans" x="52" y="164" font-size="14" font-weight="600" fill="#F5F5F5">TypeScript</text>
-<text class="sans" x="186" y="164" font-size="13.5" fill="#9CA3AF" text-anchor="end" style="font-variant-numeric: tabular-nums">72.3%</text>
+<text class="sans" x="186" y="164" font-size="13.5" fill="#9CA3AF" text-anchor="end" style="font-variant-numeric: tabular-nums">71.9%</text>
 <polygon points="205,152 218,152 213,165 200,165" fill="#D42222" stroke="#9CA3AF" stroke-width="0"/>
 <text class="sans" x="226" y="164" font-size="14" font-weight="600" fill="#F5F5F5">Kotlin</text>
-<text class="sans" x="360" y="164" font-size="13.5" fill="#9CA3AF" text-anchor="end" style="font-variant-numeric: tabular-nums">12.4%</text>
+<text class="sans" x="360" y="164" font-size="13.5" fill="#9CA3AF" text-anchor="end" style="font-variant-numeric: tabular-nums">12.3%</text>
 <polygon points="31,186 44,186 39,199 26,199" fill="#0E8A55" stroke="#9CA3AF" stroke-width="0"/>
 <text class="sans" x="52" y="198" font-size="14" font-weight="600" fill="#F5F5F5">JavaScript</text>
 <text class="sans" x="186" y="198" font-size="13.5" fill="#9CA3AF" text-anchor="end" style="font-variant-numeric: tabular-nums">4.2%</text>
@@ -28,7 +28,7 @@
 <text class="sans" x="360" y="198" font-size="13.5" fill="#9CA3AF" text-anchor="end" style="font-variant-numeric: tabular-nums">2.9%</text>
 <polygon points="31,220 44,220 39,233 26,233" fill="#6B7280" stroke="#9CA3AF" stroke-width="0"/>
 <text class="sans" x="52" y="232" font-size="14" font-weight="600" fill="#F5F5F5">Rust</text>
-<text class="sans" x="186" y="232" font-size="13.5" fill="#9CA3AF" text-anchor="end" style="font-variant-numeric: tabular-nums">1.9%</text>
+<text class="sans" x="186" y="232" font-size="13.5" fill="#9CA3AF" text-anchor="end" style="font-variant-numeric: tabular-nums">2.5%</text>
 <polygon points="205,220 218,220 213,233 200,233" fill="#474B53" stroke="#9CA3AF" stroke-width="0"/>
 <text class="sans" x="226" y="232" font-size="14" font-weight="600" fill="#F5F5F5">PLpgSQL</text>
 <text class="sans" x="360" y="232" font-size="13.5" fill="#9CA3AF" text-anchor="end" style="font-variant-numeric: tabular-nums">1.8%</text>
